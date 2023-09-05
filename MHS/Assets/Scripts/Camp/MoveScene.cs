@@ -35,7 +35,7 @@ public class MoveScene : MonoBehaviour
 
     public void MoveShipScene()
     {
-        SceneManager.LoadScene("Ship");
+        SceneManager.LoadScene("Ship_Route");
     }
 
     public void MoveCampScene()
