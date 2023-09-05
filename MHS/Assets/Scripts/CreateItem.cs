@@ -49,7 +49,11 @@ public class CreateItem : MonoBehaviour
             orderText[i].text = loadedOrderList2[i + 1];
         }
 
-        if (releaseNum != -1) releaseText.text = loadedOrderList2[releaseNum + 1];
+        if (releaseNum != -1)
+        {
+            releaseText.text = loadedOrderList2[releaseNum + 1];
+            checkObject[releaseNum].GetComponent<Image>().sprite = check;
+        }
     }
 
     List<Delivery> GetRandomSelection(int count)
