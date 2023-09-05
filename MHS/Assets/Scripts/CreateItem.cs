@@ -29,11 +29,11 @@ public class CreateItem : MonoBehaviour
         "포항 과메기", "순천 딸기", "장흥 매생이", "제주 한라봉"
     };
 
+    private int releaseNum;
     public Text[] orderText;
     public GameObject[] checkObject;
     public Text releaseText;
     public Sprite check, uncheck;
-    public int releaseNum;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +53,7 @@ public class CreateItem : MonoBehaviour
         {
             releaseText.text = loadedOrderList2[releaseNum + 1];
             checkObject[releaseNum].GetComponent<Image>().sprite = check;
+            orderText[releaseNum].color = Color.blue;
         }
     }
 
@@ -135,6 +136,7 @@ public class CreateItem : MonoBehaviour
                         releaseNum = hitNum;
                         releaseText.text = orderText[hitNum].text;
                         checkObject[hitNum].GetComponent<Image>().sprite = check;
+                        orderText[hitNum].color = Color.blue;
                     }
                     else
                     {
@@ -143,6 +145,7 @@ public class CreateItem : MonoBehaviour
                             releaseNum = -1;
                             releaseText.text = "";
                             checkObject[hitNum].GetComponent<Image>().sprite = uncheck;
+                            orderText[hitNum].color = Color.black;
                         }
                     }
                 }
