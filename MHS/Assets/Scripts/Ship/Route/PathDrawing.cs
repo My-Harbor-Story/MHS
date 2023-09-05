@@ -7,6 +7,18 @@ public class PathDrawing : MonoBehaviour
     public Transform endMarker; // 도착지 마커(Transform)을 연결합니다.
 
     private bool isDragging = false;
+    private Vector3 previousEndPoint; // 이전 직선의 끝점을 저장합니다.
+
+    void Start()
+    {
+        // 초기 이전 직선의 끝점은 시작 마커 위치로 설정합니다.
+        previousEndPoint = startMarker.position;
+
+        // LineRenderer 초기화
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, startMarker.position);
+        lineRenderer.SetPosition(1, startMarker.position);
+    }
 
     void Update()
     {
@@ -14,7 +26,6 @@ public class PathDrawing : MonoBehaviour
         {
             // 마우스 왼쪽 버튼을 클릭하면 드래그 시작합니다.
             isDragging = true;
-            lineRenderer.positionCount = 0; // 이전 경로를 지웁니다.
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -41,15 +52,7 @@ public class PathDrawing : MonoBehaviour
             }
 
             // 직선 경로를 그립니다.
-            DrawLine(endMarker.position, startMarker.position);
+            lineRenderer.SetPosition(1, endMarker.position);
         }
-    }
-
-    // 두 점 사이에 직선을 그리는 함수
-    private void DrawLine(Vector3 start, Vector3 end)
-    {
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, start);
-        lineRenderer.SetPosition(1, end);
     }
 }
