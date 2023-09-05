@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Camp.unity
+    guid: 1443553e2fc6ece41af9fe84f861bff9
+  - enabled: 1
+    path: Assets/Scenes/DataLab.unity
+    guid: af0383a4ca9f07348802cdd1ae5c2bfa
+  - enabled: 1
+    path: Assets/Scenes/ManageItem.unity
+    guid: c5d899f86ea1a8c43a4b531becd39f44
+  - enabled: 1
+    path: Assets/Scenes/Ship.unity
+    guid: 46ef79f3bb6cd2e48921e407a563df25
+  - enabled: 1
+    path: Assets/Scenes/SmartLighthouse.unity
+    guid: e09c2cc3045ed564088e165a48d389fe
   m_configObjects: {}
