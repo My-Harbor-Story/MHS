@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public struct Delivery
@@ -29,11 +30,15 @@ public class CreateItem : MonoBehaviour
     };
 
     public Text[] orderText;
+    public GameObject[] checkObject;
+    public Text releaseText;
+    public Sprite check, uncheck;
+    public int releaseNum;
 
     // Start is called before the first frame update
     void Start()
     {
-        string data = PlayerPrefs.GetString("orderList");
+        releaseNum = PlayerPrefs.GetInt("releaseNum", -1);
         string[] loadedOrderList = LoadStringArray("orderList");
         List<Delivery> createData = GetRandomSelection(5 - loadedOrderList.Length);
         SaveStringArray("orderList", loadedOrderList, createData);
@@ -43,6 +48,8 @@ public class CreateItem : MonoBehaviour
         {
             orderText[i].text = loadedOrderList2[i + 1];
         }
+
+        if (releaseNum != -1) releaseText.text = loadedOrderList2[releaseNum + 1];
     }
 
     List<Delivery> GetRandomSelection(int count)
@@ -90,9 +97,52 @@ public class CreateItem : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    private void GoToMain()
+    {
+        PlayerPrefs.SetInt("releaseNum", releaseNum);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("Camp");
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                int hitNum = -1;
+                switch (hit.transform.gameObject.tag)
+                {
+                    case "Order1": hitNum = 0; break;
+                    case "Order2": hitNum = 1; break;
+                    case "Order3": hitNum = 2; break;
+                    case "Order4": hitNum = 3; break;
+                    case "Exit": GoToMain(); break; 
+                }
+
+                if (hitNum != -1)
+                {
+                    if (releaseNum == -1)
+                    {
+                        releaseNum = hitNum;
+                        releaseText.text = orderText[hitNum].text;
+                        checkObject[hitNum].GetComponent<Image>().sprite = check;
+                    }
+                    else
+                    {
+                        if (releaseNum == hitNum)
+                        {
+                            releaseNum = -1;
+                            releaseText.text = "";
+                            checkObject[hitNum].GetComponent<Image>().sprite = uncheck;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

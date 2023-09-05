@@ -5,4 +5,5 @@ using UnityEngine;
 public class UniteData
 {
     public static string orderList;
+    public static int releaseNum;
 }
