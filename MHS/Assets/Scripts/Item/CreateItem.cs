@@ -38,6 +38,8 @@ public class CreateItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //PlayerPrefs.SetString("orderList", "");
+        //PlayerPrefs.Save();
         releaseNum = PlayerPrefs.GetInt("releaseNum", -1);
         string[] loadedOrderList = LoadStringArray("orderList");
         List<Delivery> createData = GetRandomSelection(5 - loadedOrderList.Length);
