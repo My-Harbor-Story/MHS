@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class WeatherMapApi : MonoBehaviour
 {
-    public Text weatherText;
     public WeatherData weatherInfo;
     private string apiKey = "5bdccf9869de90e5f15337311bbdf4b9";
 
@@ -29,8 +28,7 @@ public class WeatherMapApi : MonoBehaviour
 
     IEnumerator GetWeather(float lat, float lon)
     {
-        string url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid={API key}" + apiKey;
-
+        string url = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
         UnityWebRequest www = UnityWebRequest.Get(url);
         yield return www.SendWebRequest();
         if (www.result != UnityWebRequest.Result.Success)
@@ -41,12 +39,11 @@ public class WeatherMapApi : MonoBehaviour
         {
             Debug.Log(www.downloadHandler.text);
             string json = www.downloadHandler.text;
-            Debug.Log(json);
             json = json.Replace("\"base\":", "\"basem\":");
             weatherInfo = JsonUtility.FromJson<WeatherData>(json);
             if (weatherInfo.weather.Length > 0)
             {
-                weatherText.text = weatherInfo.weather[0].main;
+                Debug.Log(weatherInfo.weather[0].main); //Rain, Snow, Clouds, Clear etc
             }
         }
     }
