@@ -3454,7 +3454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1806472964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,6 +3497,34 @@ MonoBehaviour:
     id: 0
     name: 
     cod: 0
+  weatherImage:
+  - {fileID: 1862991173}
+  - {fileID: 1041815924}
+  - {fileID: 1653835782}
+  - {fileID: 928991757}
+  - {fileID: 1923941622}
+  - {fileID: 1018136182}
+  - {fileID: 334467713}
+  - {fileID: 940324415}
+  - {fileID: 333943073}
+  - {fileID: 638696250}
+  - {fileID: 1587756494}
+  - {fileID: 1664214922}
+  - {fileID: 1471545321}
+  - {fileID: 279290205}
+  - {fileID: 474410613}
+  - {fileID: 1626336582}
+  - {fileID: 288598933}
+  - {fileID: 1786956514}
+  - {fileID: 1789111858}
+  - {fileID: 672521557}
+  - {fileID: 425932894}
+  - {fileID: 1520634613}
+  - {fileID: 2050733809}
+  - {fileID: 1803531933}
+  Rain: {fileID: 21300000, guid: 64e5c5397e2852d42a7868214da342b4, type: 3}
+  Clouds: {fileID: 21300000, guid: b62f4146ba88bbb4997d17ac4a807eee, type: 3}
+  Snow: {fileID: 21300000, guid: d1e03c461ca435047a56207d42747c80, type: 3}
 --- !u!4 &1806472965
 Transform:
   m_ObjectHideFlags: 0
