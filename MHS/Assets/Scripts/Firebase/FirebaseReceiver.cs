@@ -10,7 +10,6 @@ public class FirebaseReceiver : MonoBehaviour
     DatabaseReference m_Reference;
     public InputField inputField;
     public Text dataText;
-    string data;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +20,15 @@ public class FirebaseReceiver : MonoBehaviour
     public void GetBtn()
     {
         string code = inputField.text;
-        ReceiveData(code);
-        Debug.Log(data);
+        string data = "";
+        ReceiveData(code, receivedData =>
+        {
+            data = receivedData;
+            dataText.text = data;
+        });
     }
 
-    public void ReceiveData(string code)
+    public void ReceiveData(string code, System.Action<string> onDataReceived)
     {
         FirebaseDatabase.DefaultInstance.GetReference("users")
             .GetValueAsync().ContinueWithOnMainThread(task =>
@@ -37,8 +40,8 @@ public class FirebaseReceiver : MonoBehaviour
                 else if (task.IsCompleted)
                 {
                     DataSnapshot snapshot = task.Result;
-                    data = (string)snapshot.Child(code).Value;
-                    dataText.text = data;
+                    string receivedData = (string)snapshot.Child(code).Value;
+                    onDataReceived(receivedData);
                 }
             });
     }
