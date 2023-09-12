@@ -23,13 +23,22 @@ public class RealAccident : MonoBehaviour
 
     void ShowRealAccident()
     {
+        
         for(int i = 0; i < RealText.Length; i++)
         {
             string str = data[i]["NewsPaper"].ToString();
             str = str + " ";
             str = str + data[i]["Title"].ToString();
             RealText[i].text = str;
-            Debug.Log(data[i]["Contents"].ToString());
+            int tagsNum = int.Parse(data[i]["TagsNum"].ToString());
+            int[] tagNums = new int[tagsNum];
+
+            for (int j = 0; j < tagsNum; j++)
+            {
+                string columnName = $"Tags{j}";
+                tagNums[j] = int.Parse(data[i][columnName].ToString());
+                str = str + tagNums[j] + " ";
+            }
             Debug.Log(str);
         }
     }

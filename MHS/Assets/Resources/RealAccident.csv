@@ -1,4 +1,4 @@
-num,NewsPaper,Title,Contents
-0,[XX일보],폭풍우에 운항,날씨때문인듯
-0,[XX매거진],태평양 앞바다,충돌사고
-0,[XX일보],암석,지형 때문
+num,NewsPaper,Title,TagsNum,Tags0,Tags1,Tags2,Tags3,Tags4,Tags5,Tags6,Tags7,Tags8,Tags9,Tags10
+0,[XX일보],자동 항해 결함으로 인한 충돌 사고,2,5,9,,,,,,,,,
+0,[XX매거진],여수 앞바다 충돌: 운행 부주의,3,1,2,3,,,,,,,,
+0,[XX일보],부산 부두 선박 충돌: 음주 상태 조작 미숙,9,1,2,3,6,7,8,9,12,13,,
