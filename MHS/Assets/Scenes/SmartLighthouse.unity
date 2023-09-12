@@ -3558,6 +3558,8 @@ MonoBehaviour:
   - {fileID: 2050733808}
   - {fileID: 1803531932}
   - {fileID: 493017148}
+  penButton: {fileID: 255721150}
+  eraserButton: {fileID: 564853996}
 --- !u!4 &1788431692
 Transform:
   m_ObjectHideFlags: 0
