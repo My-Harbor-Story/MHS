@@ -385,7 +385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &255721149
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3558,7 +3558,6 @@ MonoBehaviour:
   - {fileID: 2050733808}
   - {fileID: 1803531932}
   - {fileID: 493017148}
-  penButton: {fileID: 255721150}
   eraserButton: {fileID: 564853996}
 --- !u!4 &1788431692
 Transform:
