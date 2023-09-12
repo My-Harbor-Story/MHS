@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PathDrawing : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PathDrawing : MonoBehaviour
     private Transform nearestGridCenter;
     private Vector3 lastPoint; // 이전 점 저장
 
+    public Transform targetObject; // 도착 목적지
+    private float distanceThreshold = 0.5f;
 
     public Transform[] gridCenterPositions = new Transform[24];
 
@@ -46,6 +49,12 @@ public class PathDrawing : MonoBehaviour
             if (distance <= maxDistanceForDrawing)
             {
                 currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);
+            }
+
+            // 특정 위치에 도달하면 씬 전환
+            if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount-1), targetObject.position) < distanceThreshold)
+            {
+                SceneManager.LoadScene("Ship_Notice");
             }
         }
     }
