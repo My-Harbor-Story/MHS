@@ -25,6 +25,7 @@ public class PathDrawing : MonoBehaviour
         currentLineRenderer.positionCount = 1;
         currentLineRenderer.SetPosition(0, startPosition);
         lastPoint = startPosition;
+        SaveRoutePos.RoutePos.Add(startPosition);
     }
 
     void Update()
@@ -36,6 +37,7 @@ public class PathDrawing : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0) && isDragging)
         {
+            SaveRoutePos.RoutePos.Add(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1));
             isDragging = false;
         }
 
@@ -48,12 +50,13 @@ public class PathDrawing : MonoBehaviour
             // 대각선 방향으로 그리지 않도록 수정
             if (distance <= maxDistanceForDrawing)
             {
-                currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);
+                currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);   
             }
 
             // 특정 위치에 도달하면 씬 전환
             if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount-1), targetObject.position) < distanceThreshold)
             {
+                SaveRoutePos.RoutePos.Add(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1));
                 SceneManager.LoadScene("Ship_Notice");
             }
         }

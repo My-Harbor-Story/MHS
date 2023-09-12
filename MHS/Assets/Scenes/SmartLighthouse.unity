@@ -3531,6 +3531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRendererPrefab: {fileID: 4752421916832422825}
+  targetObject: {fileID: 493017148}
   gridCenterPositions:
   - {fileID: 1862991172}
   - {fileID: 1041815923}
