@@ -17,7 +17,7 @@ public class PathDrawing : MonoBehaviour
     void Start()
     {
         // 처음 라인을 그릴 때 시작 위치를 고정
-        Vector3 startPosition = new Vector3(0.9375f, -7.18f, zCoordinate);
+        Vector3 startPosition = new Vector3(0.9375f, -7.71875f, zCoordinate);
         currentLineRenderer = Instantiate(lineRendererPrefab);
         currentLineRenderer.positionCount = 1;
         currentLineRenderer.SetPosition(0, startPosition);
@@ -40,12 +40,11 @@ public class PathDrawing : MonoBehaviour
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             nearestGridCenter = FindNearestGridCenter(mousePosition);
-            float distance = Vector3.Distance(nearestGridCenter.position, lastPoint);
+            float distance = Vector3.Distance(nearestGridCenter.position, currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 2));
 
-            // 대각선으로 그리는 최대 허용 거리보다 작을 때만 선을 그립니다.
+            // 대각선 방향으로 그리지 않도록 수정
             if (distance <= maxDistanceForDrawing)
             {
-                lastPoint = nearestGridCenter.position;
                 currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);
             }
         }
