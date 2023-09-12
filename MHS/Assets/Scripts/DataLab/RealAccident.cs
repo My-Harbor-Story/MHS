@@ -26,9 +26,7 @@ public class RealAccident : MonoBehaviour
         
         for(int i = 0; i < RealText.Length; i++)
         {
-            string str = data[i]["NewsPaper"].ToString();
-            str = str + " ";
-            str = str + data[i]["Title"].ToString();
+            string str =  data[i]["Title"].ToString();
             RealText[i].text = str;
             int tagsNum = int.Parse(data[i]["TagsNum"].ToString());
             int[] tagNums = new int[tagsNum];
