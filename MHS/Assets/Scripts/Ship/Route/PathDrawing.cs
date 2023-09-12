@@ -2,57 +2,70 @@ using UnityEngine;
 
 public class PathDrawing : MonoBehaviour
 {
-    public LineRenderer lineRenderer; // LineRenderer 컴포넌트를 연결합니다.
-    public Transform startMarker; // 출발지 마커(Transform)을 연결합니다.
-    public Transform endMarker; // 도착지 마커(Transform)을 연결합니다.
-
+    public LineRenderer lineRendererPrefab;
     private bool isDragging = false;
-    private Vector3 previousEndPoint; // 이전 직선의 끝점을 저장합니다.
+    private LineRenderer currentLineRenderer;
+    private float zCoordinate = 100f;
+    private Transform nearestGridCenter;
+    private Vector3 lastPoint; // 이전 점 저장
+
+
+    public Transform[] gridCenterPositions = new Transform[24];
+
+    private float maxDistanceForDrawing = 2.5f; // 대각선으로 못그리게
 
     void Start()
     {
-        // 초기 이전 직선의 끝점은 시작 마커 위치로 설정합니다.
-        previousEndPoint = startMarker.position;
-
-        // LineRenderer 초기화
-        lineRenderer.positionCount = 2;
-        lineRenderer.SetPosition(0, startMarker.position);
-        lineRenderer.SetPosition(1, startMarker.position);
+        // 처음 라인을 그릴 때 시작 위치를 고정
+        Vector3 startPosition = new Vector3(0.9375f, -7.18f, zCoordinate);
+        currentLineRenderer = Instantiate(lineRendererPrefab);
+        currentLineRenderer.positionCount = 1;
+        currentLineRenderer.SetPosition(0, startPosition);
+        lastPoint = startPosition;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isDragging)
         {
-            // 마우스 왼쪽 버튼을 클릭하면 드래그 시작합니다.
             isDragging = true;
+            currentLineRenderer.positionCount++; // 새로운 점 추가
         }
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && isDragging)
         {
-            // 마우스 왼쪽 버튼을 놓으면 드래그 종료합니다.
             isDragging = false;
         }
 
         if (isDragging)
         {
-            // 마우스를 클릭하고 있는 동안 드래그 중입니다.
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 difference = mousePosition - startMarker.position;
+            nearestGridCenter = FindNearestGridCenter(mousePosition);
+            float distance = Vector3.Distance(nearestGridCenter.position, lastPoint);
 
-            // 대각선 방향을 판단하여 수평 또는 수직으로만 직선을 그립니다.
-            if (Mathf.Abs(difference.x) > Mathf.Abs(difference.y))
+            // 대각선으로 그리는 최대 허용 거리보다 작을 때만 선을 그립니다.
+            if (distance <= maxDistanceForDrawing)
             {
-                // 수평으로 그립니다.
-                endMarker.position = new Vector3(mousePosition.x, startMarker.position.y, 0f);
+                lastPoint = nearestGridCenter.position;
+                currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);
             }
-            else
-            {
-                // 수직으로 그립니다.
-                endMarker.position = new Vector3(startMarker.position.x, mousePosition.y, 0f);
-            }
-
-            // 직선 경로를 그립니다.
-            lineRenderer.SetPosition(1, endMarker.position);
         }
+    }
+
+    private Transform FindNearestGridCenter(Vector3 position)
+    {
+        Transform nearestGridCenter = null;
+        float minDistance = float.MaxValue;
+
+        foreach (Transform centerPosition in gridCenterPositions)
+        {
+            float distance = Vector3.Distance(position, centerPosition.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearestGridCenter = centerPosition;
+            }
+        }
+
+        return nearestGridCenter;
     }
 }
