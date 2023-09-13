@@ -34,8 +34,12 @@ public class RealAccident : MonoBehaviour
 
         // 유사도에 따라 상위 3개 제목 출력
         List<string> similarTitles = FindSimilarTitles(gameTags, 3);
+
+        int index = 0;
         foreach (string title in similarTitles)
         {
+            RealText[index].text = title;
+            index++;
             Debug.Log("Similar Title: " + title);
         }
     }
@@ -133,7 +137,7 @@ public class RealAccident : MonoBehaviour
             Array.Resize(ref dataTags, userTags.Length);
 
             double similarity = CalculateCosineSimilarity(userTags, dataTags);
-            Debug.Log(data.Title + " "+ similarity);
+            //Debug.Log(data.Title + " "+ similarity);
             similarityList.Add(new Tuple<string, double>(data.Title, similarity));
         }
 
