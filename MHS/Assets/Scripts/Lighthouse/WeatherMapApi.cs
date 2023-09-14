@@ -9,8 +9,8 @@ public class WeatherMapApi : MonoBehaviour
     public WeatherData weatherInfo;
     public Image[] weatherImage = new Image[24];
     public Sprite Rain;
-    public Sprite Clouds;
-    public Sprite Snow;
+    public Sprite Wind;
+    public Sprite Both;
     private string apiKey = "5bdccf9869de90e5f15337311bbdf4b9";
 
     // Start is called before the first frame update
@@ -53,21 +53,21 @@ public class WeatherMapApi : MonoBehaviour
             if (weatherInfo.weather.Length > 0)
             {
                 //Debug.Log(weatherInfo.weather[0].main); //Rain, Snow, Clouds, Clear etc
-                if (weatherInfo.weather[0].main == "Rain")
+                if (weatherInfo.weather[0].main == "Rain" && weatherInfo.wind.speed >= 5)
+                {
+                    weatherImage[idx].enabled = true;
+                    weatherImage[idx].sprite = Both;
+                }
+                else if (weatherInfo.weather[0].main == "Rain")
                 {
                     weatherImage[idx].enabled = true;
                     weatherImage[idx].sprite = Rain;
                 }
-                if (weatherInfo.weather[0].main == "Snow")
+                else if (weatherInfo.wind.speed >= 5)
                 {
                     weatherImage[idx].enabled = true;
-                    weatherImage[idx].sprite = Snow;
+                    weatherImage[idx].sprite = Wind;
                 }
-                //if (weatherInfo.weather[0].main == "Clouds")
-                //{
-                //    weatherImage[idx].enabled = true;
-                //    weatherImage[idx].sprite = Clouds;
-                //}
             }
         }
     }

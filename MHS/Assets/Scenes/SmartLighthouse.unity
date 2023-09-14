@@ -1387,7 +1387,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239089a5196cabb48b8fbef0210ee4b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPos: {fileID: 0}
   gridCenterPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  obstacleCenterPositions:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1414,6 +1440,7 @@ MonoBehaviour:
   - {fileID: 0}
   start: {fileID: 0}
   end: {fileID: 0}
+  aiButton: {fileID: 0}
 --- !u!1 &564853994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3897,11 +3924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17947031222d7ab4d944b98416e7335f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottomLeft: {x: 0, y: 0}
-  topRight: {x: 0, y: 0}
-  startPos: {x: 0, y: 0}
-  targetPos: {x: 0, y: 0}
-  FinalNodeList: []
 --- !u!1 &1789111856
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,8 +4161,8 @@ MonoBehaviour:
   - {fileID: 2050733809}
   - {fileID: 1803531933}
   Rain: {fileID: 21300000, guid: 64e5c5397e2852d42a7868214da342b4, type: 3}
-  Clouds: {fileID: 21300000, guid: b62f4146ba88bbb4997d17ac4a807eee, type: 3}
-  Snow: {fileID: 21300000, guid: d1e03c461ca435047a56207d42747c80, type: 3}
+  Wind: {fileID: 21300000, guid: b62f4146ba88bbb4997d17ac4a807eee, type: 3}
+  Both: {fileID: 21300000, guid: 8b3d33b10ae5e0d47bd22b999fa94f4a, type: 3}
 --- !u!4 &1806472965
 Transform:
   m_ObjectHideFlags: 0
