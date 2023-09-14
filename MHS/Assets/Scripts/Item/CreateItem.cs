@@ -104,10 +104,15 @@ public class CreateItem : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void GoToMain()
+    public void GoToMain_Save()
     {
         PlayerPrefs.SetInt("releaseNum", releaseNum);
         PlayerPrefs.Save();
+        SceneManager.LoadScene("Camp");
+    }
+
+    public void GoToMain_NoSave()
+    {
         SceneManager.LoadScene("Camp");
     }
 
@@ -128,7 +133,6 @@ public class CreateItem : MonoBehaviour
                     case "Order2": hitNum = 1; break;
                     case "Order3": hitNum = 2; break;
                     case "Order4": hitNum = 3; break;
-                    case "Exit": GoToMain(); break; 
                 }
 
                 if (hitNum != -1)

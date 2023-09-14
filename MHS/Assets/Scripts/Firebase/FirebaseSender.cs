@@ -19,7 +19,7 @@ public class FirebaseSender : MonoBehaviour
 
     public void CodeBtn()
     {
-        string code = GenerateCode(8);
+        string code = GenerateCode(6);
         codeText.text = code;
         SendData(code);
     }

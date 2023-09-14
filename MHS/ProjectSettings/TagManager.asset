@@ -8,7 +8,6 @@ TagManager:
   - Order2
   - Order3
   - Order4
-  - Exit
   layers:
   - Default
   - TransparentFX
