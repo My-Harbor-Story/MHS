@@ -106,7 +106,15 @@ public class CreateItem : MonoBehaviour
 
     public void GoToMain_Save()
     {
+        string userCode = PlayerPrefs.GetString("userCode", null);
+        if (userCode == null)
+        {
+            userCode = FirebaseSender.GenerateCode(6);
+            Debug.Log(userCode);
+            PlayerPrefs.SetString("userCode", userCode);
+        }
         PlayerPrefs.SetInt("releaseNum", releaseNum);
+        PlayerPrefs.SetInt("step", 1);
         PlayerPrefs.Save();
         SceneManager.LoadScene("Camp");
     }

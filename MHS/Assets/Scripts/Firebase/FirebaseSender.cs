@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class FirebaseSender : MonoBehaviour
 {
-    DatabaseReference m_Reference;
+    private static DatabaseReference m_Reference;
     public InputField inputField;
     public Text codeText;
-    private string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private static string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class FirebaseSender : MonoBehaviour
         SendData(code);
     }
 
-    public string GenerateCode(int length)
+    public static string GenerateCode(int length)
     {
         char[] randomChars = new char[length];
         for (int i = 0; i < length; i++)
@@ -39,6 +39,14 @@ public class FirebaseSender : MonoBehaviour
     {
         string data = inputField.text;
         m_Reference.Child("users").Child(code).SetValueAsync(data);
+    }
+
+    public static void SendWeatherData(int idx, int weatherCode, int temp)
+    {
+        m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
+        string userCode = PlayerPrefs.GetString("userCode", "null");
+        m_Reference.Child("users").Child(userCode).Child(idx.ToString()).Child("Weather").SetValueAsync(weatherCode);
+        m_Reference.Child("users").Child(userCode).Child(idx.ToString()).Child("temp").SetValueAsync(temp);
     }
 
     // Update is called once per frame

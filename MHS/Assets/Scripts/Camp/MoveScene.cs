@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MoveScene : MonoBehaviour
 {
-
+    int step;
     // Start is called before the first frame update
     void Start()
     {
-
+        step = PlayerPrefs.GetInt("step", 0);
     }
 
     // Update is called once per frame
@@ -25,6 +25,13 @@ public class MoveScene : MonoBehaviour
 
     public void MoveManageItemScene()
     {
+        if(step == 1) // 추후 알림창 생성 필요
+        {
+            //FB에서 PlayerPref userCode 해당하는 값 삭제
+            //PlayerPrefs.SetString("userCode", null); //데이터 덮어쓰기 가능 -> 게임 종료 시 초기화
+            PlayerPrefs.SetInt("code", 0);
+            PlayerPrefs.Save();
+        }
         SceneManager.LoadScene("ManageItem");
     }
 
