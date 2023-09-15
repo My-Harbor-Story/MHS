@@ -106,8 +106,8 @@ public class CreateItem : MonoBehaviour
 
     public void GoToMain_Save()
     {
-        string userCode = PlayerPrefs.GetString("userCode", null);
-        if (userCode == null)
+        string userCode = PlayerPrefs.GetString("userCode", "");
+        if (userCode == "")
         {
             userCode = FirebaseSender.GenerateCode(6);
             Debug.Log(userCode);
