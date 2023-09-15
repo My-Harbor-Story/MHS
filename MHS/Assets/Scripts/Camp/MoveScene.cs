@@ -6,10 +6,15 @@ using UnityEngine.SceneManagement;
 public class MoveScene : MonoBehaviour
 {
     int step;
+    public GameObject[] stepObject = new GameObject[3];
     // Start is called before the first frame update
     void Start()
     {
         step = PlayerPrefs.GetInt("step", 0);
+        for(int i=0; i<step; i++)
+        {
+            stepObject[i].SetActive(true);
+        }
     }
 
     // Update is called once per frame
