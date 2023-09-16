@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class FirebaseReceiver : MonoBehaviour
 {
     private static DatabaseReference m_Reference;
-    public static WeatherDataFB[] weatherData = new WeatherDataFB[24];
     public InputField inputField;
     public Text dataText;
 
@@ -69,10 +68,9 @@ public class FirebaseReceiver : MonoBehaviour
     //        });
     //}
 
-    public static async void GetWeatherData(string code, int idx)
+    public static async void CallReceiveWeatherData(string code, int idx)
     {
         await ReceiveWeatherData(code, idx);
-        Debug.Log("³»ºÎ : " + weatherData[idx].temp);
     }
 
     public static async Task ReceiveWeatherData(string code, int idx)
@@ -84,8 +82,8 @@ public class FirebaseReceiver : MonoBehaviour
         {
             foreach (var data in snapshot.Children)
             {
-                if (data.Key == "temp") FirebaseReceiver.weatherData[idx].temp = int.Parse(data.Value.ToString());
-                if (data.Key == "Weather") FirebaseReceiver.weatherData[idx].code = int.Parse(data.Value.ToString());
+                if (data.Key == "temp") GetWeatherData.weatherData[idx].temp = int.Parse(data.Value.ToString());
+                if (data.Key == "Weather") GetWeatherData.weatherData[idx].code = int.Parse(data.Value.ToString());
             }
         }
     }
