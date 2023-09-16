@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class FirebaseReceiver : MonoBehaviour
 {
-    DatabaseReference m_Reference;
+    public static DatabaseReference m_Reference;
     public InputField inputField;
     public Text dataText;
 
@@ -42,6 +42,26 @@ public class FirebaseReceiver : MonoBehaviour
                     DataSnapshot snapshot = task.Result;
                     string receivedData = (string)snapshot.Child(code).Value;
                     onDataReceived(receivedData);
+                }
+            });
+    }
+
+    public static void ReceiveWeatherData(string code, int idx)
+    {
+        m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
+        m_Reference.Child("users").Child(code).Child(idx.ToString()).GetValueAsync().ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Debug.Log("Error");
+                }
+                else if (task.IsCompleted)
+                {
+                    DataSnapshot snapshot = task.Result;
+                    foreach (var data in snapshot.Children)
+                    {
+                        Debug.Log(data.Key + " " + data.Value);
+                    }
                 }
             });
     }

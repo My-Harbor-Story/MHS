@@ -44,7 +44,7 @@ public class FirebaseSender : MonoBehaviour
     public static void SendWeatherData(int idx, int weatherCode, int temp)
     {
         m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
-        string userCode = PlayerPrefs.GetString("userCode", "null");
+        string userCode = PlayerPrefs.GetString("userCode");
         m_Reference.Child("users").Child(userCode).Child(idx.ToString()).Child("Weather").SetValueAsync(weatherCode);
         m_Reference.Child("users").Child(userCode).Child(idx.ToString()).Child("temp").SetValueAsync(temp);
     }
