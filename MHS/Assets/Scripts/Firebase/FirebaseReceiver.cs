@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class FirebaseReceiver : MonoBehaviour
 {
     private static DatabaseReference m_Reference;
+    public static WeatherDataFB[] weatherData = new WeatherDataFB[24];
     public InputField inputField;
     public Text dataText;
 
@@ -82,8 +83,9 @@ public class FirebaseReceiver : MonoBehaviour
         {
             foreach (var data in snapshot.Children)
             {
-                if (data.Key == "temp") GetWeatherData.weatherData[idx].temp = int.Parse(data.Value.ToString());
-                if (data.Key == "Weather") GetWeatherData.weatherData[idx].code = int.Parse(data.Value.ToString());
+                //Debug.Log(data.Key + ", " + data.Value);
+                if (data.Key == "temp") weatherData[idx].temp = int.Parse(data.Value.ToString());
+                if (data.Key == "Weather") weatherData[idx].code = int.Parse(data.Value.ToString());
             }
         }
     }
