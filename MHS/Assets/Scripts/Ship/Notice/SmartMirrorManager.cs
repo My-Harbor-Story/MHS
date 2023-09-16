@@ -28,6 +28,11 @@ public class SmartMirrorManager : MonoBehaviour
             int cubeTemp = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].temp;
             tempText.text = cubeTemp.ToString();
         }
+
+        if (collision.gameObject.CompareTag("Rock"))
+        {
+            Debug.Log("장애물 충돌");
+        }
     }
 
     // Update is called once per frame

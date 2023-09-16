@@ -9,6 +9,7 @@ TagManager:
   - Order3
   - Order4
   - Map
+  - Rock
   layers:
   - Default
   - TransparentFX
