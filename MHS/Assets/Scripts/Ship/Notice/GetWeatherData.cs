@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GetWeatherData : MonoBehaviour
 {
-    public static WeatherDataFB[] weatherData = new WeatherDataFB[24];
     private string code;
 
     // Start is called before the first frame update
@@ -12,7 +11,7 @@ public class GetWeatherData : MonoBehaviour
     {
         //code = PlayerPrefs.GetString("userCode");
         code = "f4Va30";
-        for (int i = 0; i < weatherData.Length; i++)
+        for (int i = 0; i < 24; i++)
         {
             GetWeather(i, "temp");
         }
@@ -20,12 +19,12 @@ public class GetWeatherData : MonoBehaviour
 
     void GetWeather(int idx, string sep)
     {
-        FirebaseReceiver.ReceiveWeatherData(code, idx);
+        FirebaseReceiver.GetWeatherData(code, idx);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(weatherData[22].temp);
+        Debug.Log("¿ÜºÎ : " + FirebaseReceiver.weatherData[22].temp);
     }
 }

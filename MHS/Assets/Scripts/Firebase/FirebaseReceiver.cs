@@ -2,12 +2,14 @@ using Firebase.Database;
 using Firebase.Extensions;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FirebaseReceiver : MonoBehaviour
 {
-    public static DatabaseReference m_Reference;
+    private static DatabaseReference m_Reference;
+    public static WeatherDataFB[] weatherData = new WeatherDataFB[24];
     public InputField inputField;
     public Text dataText;
 
@@ -46,24 +48,46 @@ public class FirebaseReceiver : MonoBehaviour
             });
     }
 
-    public static void ReceiveWeatherData(string code, int idx)
+    //public static void ReceiveWeatherData(string code, int idx)
+    //{
+    //    m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
+    //    m_Reference.Child("users").Child(code).Child(idx.ToString()).GetValueAsync().ContinueWith(task =>
+    //        {
+    //            if (task.IsFaulted)
+    //            {
+    //                Debug.Log("Error");
+    //            }
+    //            else if (task.IsCompleted)
+    //            {
+    //                DataSnapshot snapshot = task.Result;
+    //                foreach (var data in snapshot.Children)
+    //                {
+    //                    Debug.Log(data.Key + " " + data.Value);
+    //                    if (data.Key == "temp") weatherData[idx].temp = (int)data.Value;
+    //                }
+    //            }
+    //        });
+    //}
+
+    public static async void GetWeatherData(string code, int idx)
+    {
+        await ReceiveWeatherData(code, idx);
+        Debug.Log("³»ºÎ : " + weatherData[idx].temp);
+    }
+
+    public static async Task ReceiveWeatherData(string code, int idx)
     {
         m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
-        m_Reference.Child("users").Child(code).Child(idx.ToString()).GetValueAsync().ContinueWith(task =>
+        DataSnapshot snapshot = await m_Reference.Child("users").Child(code).Child(idx.ToString()).GetValueAsync();
+
+        if (snapshot.Exists)
+        {
+            foreach (var data in snapshot.Children)
             {
-                if (task.IsFaulted)
-                {
-                    Debug.Log("Error");
-                }
-                else if (task.IsCompleted)
-                {
-                    DataSnapshot snapshot = task.Result;
-                    foreach (var data in snapshot.Children)
-                    {
-                        Debug.Log(data.Key + " " + data.Value);
-                    }
-                }
-            });
+                if (data.Key == "temp") FirebaseReceiver.weatherData[idx].temp = int.Parse(data.Value.ToString());
+                if (data.Key == "Weather") FirebaseReceiver.weatherData[idx].code = int.Parse(data.Value.ToString());
+            }
+        }
     }
 
     // Update is called once per frame
