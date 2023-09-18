@@ -10,6 +10,7 @@ public class FirebaseReceiver : MonoBehaviour
 {
     private static DatabaseReference m_Reference;
     public static WeatherDataFB[] weatherData = new WeatherDataFB[24];
+    public static int userExists = 0; //0 : default, -1 : None, 1 : Exists
     public InputField inputField;
     public Text dataText;
 
@@ -87,6 +88,26 @@ public class FirebaseReceiver : MonoBehaviour
                 if (data.Key == "temp") weatherData[idx].temp = int.Parse(data.Value.ToString());
                 if (data.Key == "Weather") weatherData[idx].code = int.Parse(data.Value.ToString());
             }
+        }
+    }
+
+    public static async void CallReceiveUserCode(string code)
+    {
+        await ReceiveUserCode(code);
+    }
+
+    public static async Task ReceiveUserCode(string code)
+    {
+        m_Reference = FirebaseDatabase.DefaultInstance.RootReference;
+        DataSnapshot snapshot = await m_Reference.Child("users").Child(code).GetValueAsync();
+
+        if (snapshot.Exists)
+        {
+            userExists = 1;
+        }
+        else
+        {
+            userExists = -1;
         }
     }
 
