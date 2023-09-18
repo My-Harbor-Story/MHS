@@ -14,6 +14,9 @@ public class NoticeBtn : MonoBehaviour
     public Button yesBtn;
     public Button NoBtn;
 
+    // 우선 3바퀴 돌면 넘어가게 설정
+    private int count = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +41,12 @@ public class NoticeBtn : MonoBehaviour
             if (loadingBarImage.fillAmount >= 1.0f)
             {
                 loadingBarImage.fillAmount = 0.0f;
+                count++;
             }
         }
         // 로딩이 끝나고 다음 페이지로 넘어갈 수 있으면
-        else if(!isLoading && isNext)
+        //else if(!isLoading && isNext)
+        if(count >= 3)
         {
             SceneManager.LoadScene("DataLab");
         }
