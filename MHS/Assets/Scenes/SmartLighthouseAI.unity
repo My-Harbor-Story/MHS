@@ -3994,36 +3994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc46112777970884791756bff5987c99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weatherInfo:
-    coord:
-      lon: 0
-      lat: 0
-    weather: []
-    basem: 
-    main:
-      temp: 0
-      feels_like: 0
-      temp_min: 0
-      temp_max: 0
-      pressure: 0
-      humidity: 0
-    visibility: 0
-    wind:
-      speed: 0
-      deg: 0
-    clouds:
-      all: 0
-    dt: 0
-    sys:
-      type: 0
-      id: 0
-      country: 
-      sunrise: 0
-      sunset: 0
-    timezone: 0
-    id: 0
-    name: 
-    cod: 0
   weatherImage:
   - {fileID: 1862991173}
   - {fileID: 1041815924}
@@ -4050,8 +4020,8 @@ MonoBehaviour:
   - {fileID: 2050733809}
   - {fileID: 1803531933}
   Rain: {fileID: 21300000, guid: 64e5c5397e2852d42a7868214da342b4, type: 3}
-  Clouds: {fileID: 21300000, guid: b62f4146ba88bbb4997d17ac4a807eee, type: 3}
-  Snow: {fileID: 21300000, guid: d1e03c461ca435047a56207d42747c80, type: 3}
+  Wind: {fileID: 0}
+  Both: {fileID: 0}
 --- !u!4 &1806472965
 Transform:
   m_ObjectHideFlags: 0
