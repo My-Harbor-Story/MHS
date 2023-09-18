@@ -38,9 +38,7 @@ public class LighthouseUI : MonoBehaviour
 
     public void GoToMainSave()
     {
-        PlayerPrefs.SetInt("step", 3);
-        PlayerPrefs.Save();
-
+        // 이때 스텝2로 가야하나..?
         SceneManager.LoadScene("Ship_Notice");
     }
 
