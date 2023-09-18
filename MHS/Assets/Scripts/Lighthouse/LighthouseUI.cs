@@ -36,6 +36,14 @@ public class LighthouseUI : MonoBehaviour
         SceneManager.LoadScene("Camp");
     }
 
+    public void GoToMainSave()
+    {
+        PlayerPrefs.SetInt("step", 3);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene("Ship_Notice");
+    }
+
     // Update is called once per frame
     void Update()
     {

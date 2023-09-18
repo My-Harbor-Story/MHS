@@ -108,11 +108,11 @@ public class PathDrawing : MonoBehaviour
                     }
 
                     // 특정 위치에 도달하면 씬 전환
-                    if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1), targetObject.position) < distanceThreshold)
-                    {
-                        SaveRoutePos.RoutePos.Add(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1));
-                        SceneManager.LoadScene("Ship_Notice");
-                    }
+                    //if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1), targetObject.position) < distanceThreshold)
+                    //{
+                    //    SaveRoutePos.RoutePos.Add(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1));
+                    //    SceneManager.LoadScene("Ship_Notice");
+                    //}
                 }
             }
         }
