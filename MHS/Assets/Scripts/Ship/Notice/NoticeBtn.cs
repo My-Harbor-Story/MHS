@@ -10,6 +10,7 @@ public class NoticeBtn : MonoBehaviour
     private bool isLoading = false;
     public bool isNext = false;
     public Image loadingPage;
+    public Image loadingBackground;
 
     public Button yesBtn;
     public Button NoBtn;
@@ -22,6 +23,7 @@ public class NoticeBtn : MonoBehaviour
     {
         loadingPage.gameObject.SetActive(false);
         loadingBarImage.gameObject.SetActive(false);
+        loadingBackground.gameObject.SetActive(false);
 
         yesBtn.gameObject.SetActive(true);
         NoBtn.gameObject.SetActive(true);
@@ -60,14 +62,16 @@ public class NoticeBtn : MonoBehaviour
     {
         PlayerPrefs.SetInt("step", 3);
         PlayerPrefs.Save();
-        showLoadingPage();
+
         hideBtn();
+        showLoadingPage();
     }
 
     private void showLoadingPage()
     {
         loadingPage.gameObject.SetActive(true);
         loadingBarImage.gameObject.SetActive(true);
+        loadingBackground.gameObject.SetActive(true);
 
         isLoading = true;
     }

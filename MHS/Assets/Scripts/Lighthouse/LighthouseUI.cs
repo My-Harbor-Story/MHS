@@ -38,8 +38,12 @@ public class LighthouseUI : MonoBehaviour
 
     public void GoToMainSave()
     {
-        // 이때 스텝2로 가야하나..?
-        SceneManager.LoadScene("Ship_Notice");
+        PlayerPrefs.SetInt("step", 2);
+        PlayerPrefs.Save();
+
+        SceneManager.LoadScene("Camp");
+
+        //SceneManager.LoadScene("Ship_Notice");
     }
 
     // Update is called once per frame
