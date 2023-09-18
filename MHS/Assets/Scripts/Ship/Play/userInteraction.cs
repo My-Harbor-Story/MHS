@@ -20,7 +20,7 @@ public class userInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        handle.localRotation = Quaternion.Euler(0.0f, 90f, -90.0f);
     }
 
     // Update is called once per frame
@@ -37,8 +37,8 @@ public class userInteraction : MonoBehaviour
             transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
 
             // 핸들의 방향 확인
-            Debug_Handle();
-            //checkHandle();
+            //Debug_Handle();
+            checkHandle();
         }
 
     }
@@ -47,29 +47,33 @@ public class userInteraction : MonoBehaviour
     {
         //회전
         transform.Rotate(0, Time.deltaTime * -30, 0);
-        transform.Translate(0, 0, speed * 0.65f * Time.deltaTime);
 
     }
 
     void Handle_Right()
     {
         transform.Rotate(0, Time.deltaTime * 30, 0);
-        transform.Translate(0, 0, speed * 2 / 5 * Time.deltaTime);
     }
 
 
     void checkHandle()
     {
-        Vector3 vector3 = handle.localRotation.eulerAngles;
-        //핸들을 잡은 상태 + - 35 / 35 범주를 넘어서면rotate
-        if (180 <= vector3.y)
+        if (isHandle)
         {
-            Handle_Left();
+            Vector3 vector3 = handle.localRotation.eulerAngles;
+            //핸들을 잡은 상태 + - 35 / 35 범주를 넘어서면rotate
+            if (180 <= vector3.x)
+            {
+                Debug.Log("Turn Left");
+                Handle_Left();
+            }
+            else
+            {
+                Debug.Log("Turn Right");
+                Handle_Right();
+            }
         }
-        else
-        {
-            Handle_Right();
-        }
+        
     }
 
     public void setIsHandle(bool isHandle)
@@ -83,10 +87,12 @@ public class userInteraction : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
+            handle.localRotation = Quaternion.Euler(-90.0f, 90f, -90.0f);
             Handle_Left();
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
+            handle.localRotation = Quaternion.Euler(90.0f, 90f, -90.0f);
             Handle_Right();
         }
 

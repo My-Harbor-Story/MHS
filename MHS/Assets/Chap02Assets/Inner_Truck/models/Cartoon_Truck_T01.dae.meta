@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 3490bdc7b6b0829489b0bd4bb588ed65
+timeCreated: 1464341070
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ___Steering_wheel
+    100002: animatable
+    100004: body
+    100006: //RootNode
+    100008: door_B
+    100010: Door_L
+    100012: Door_R
+    100014: door_rear_R
+    100016: Dump
+    100018: elements
+    100020: Hood
+    100022: portes_AR_L
+    100024: straight
+    100026: Tire_Back_L.1
+    100028: Tire_Back_R.1
+    100030: Tire_Front_L.1
+    100032: Tire_Front_R.1
+    100034: Tires
+    100036: truck
+    100038: Tire_Back_L
+    100040: Tire_Back_R
+    100042: Tire_Front_L
+    100044: Tire_Front_R
+    100046: ___SteeringWheel
+    100048: SteeringWheel
+    100050: door_rear_L
+    400000: ___Steering_wheel
+    400002: animatable
+    400004: body
+    400006: //RootNode
+    400008: door_B
+    400010: Door_L
+    400012: Door_R
+    400014: door_rear_R
+    400016: Dump
+    400018: elements
+    400020: Hood
+    400022: portes_AR_L
+    400024: straight
+    400026: Tire_Back_L.1
+    400028: Tire_Back_R.1
+    400030: Tire_Front_L.1
+    400032: Tire_Front_R.1
+    400034: Tires
+    400036: truck
+    400038: Tire_Back_L
+    400040: Tire_Back_R
+    400042: Tire_Front_L
+    400044: Tire_Front_R
+    400046: ___SteeringWheel
+    400048: SteeringWheel
+    400050: door_rear_L
+    2300000: ___Steering_wheel
+    2300002: body
+    2300004: door_B
+    2300006: Door_L
+    2300008: Door_R
+    2300010: door_rear_R
+    2300012: Dump
+    2300014: elements
+    2300016: Hood
+    2300018: portes_AR_L
+    2300020: straight
+    2300022: Tire_Back_L.1
+    2300024: Tire_Back_R.1
+    2300026: Tire_Front_L.1
+    2300028: Tire_Front_R.1
+    2300030: Tire_Back_L
+    2300032: Tire_Back_R
+    2300034: Tire_Front_L
+    2300036: Tire_Front_R
+    2300038: ___SteeringWheel
+    2300040: SteeringWheel
+    2300042: door_rear_L
+    3300000: ___Steering_wheel
+    3300002: body
+    3300004: door_B
+    3300006: Door_L
+    3300008: Door_R
+    3300010: door_rear_R
+    3300012: Dump
+    3300014: elements
+    3300016: Hood
+    3300018: portes_AR_L
+    3300020: straight
+    3300022: Tire_Back_L.1
+    3300024: Tire_Back_R.1
+    3300026: Tire_Front_L.1
+    3300028: Tire_Front_R.1
+    3300030: Tire_Back_L
+    3300032: Tire_Back_R
+    3300034: Tire_Front_L
+    3300036: Tire_Front_R
+    3300038: ___SteeringWheel
+    3300040: SteeringWheel
+    3300042: door_rear_L
+    4300000: Tire_Back_L.1
+    4300002: Tire_Back_R.1
+    4300004: Tire_Front_L.1
+    4300006: Tire_Front_R.1
+    4300008: Hood
+    4300010: Door_R
+    4300012: Door_L
+    4300014: ___Steering_wheel
+    4300016: body
+    4300018: elements
+    4300020: straight
+    4300022: door_rear_R
+    4300024: portes_AR_L
+    4300026: Dump
+    4300028: door_B
+    4300030: Tire_Back_L
+    4300032: Tire_Back_R
+    4300034: Tire_Front_L
+    4300036: Tire_Front_R
+    4300038: ___SteeringWheel
+    4300040: SteeringWheel
+    4300042: door_rear_L
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
