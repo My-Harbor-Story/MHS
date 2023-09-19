@@ -17,7 +17,8 @@ public class DataLabPage3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string codeData = UniteData.userCode;
+        //string codeData = UniteData.userCode;
+        string codeData = "f4Va30";
         DateText.text = "항해 날짜 " + DateTime.Now.ToString("yyyy / MM / dd");
         CodeNumText.text = "코드 번호 " + codeData;
         AccidentCountText.text = "사고 건수 " + gameAccident;
