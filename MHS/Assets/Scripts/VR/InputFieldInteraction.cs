@@ -16,7 +16,6 @@ public class InputFieldInteraction : MonoBehaviour
         // Oculus 컨트롤러의 트리거 버튼을 사용하여 InputField를 클릭할 수 있도록 합니다.
         if (OVRInput.GetDown(OVRInput.Button.Any) && currentInputField != null)
         {
-            Debug.LogWarning("GETDOWNNNNNNNNNNNN");
             ActivateKeyboard(currentInputField);
         }
     }

@@ -25,24 +25,26 @@ public class SmartMirrorManager : MonoBehaviour
             int cubeWeather = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].code;
 
             rainPrefab.SetActive(false);
-            if (cubeWeather == 0) weatherText.text = "Clear";
+            if (cubeWeather == 0) weatherText.text = "陳噢 : Clear";
             else if (cubeWeather == 1)
             {
                 rainPrefab.SetActive(true);
                 rainPrefab.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
-                weatherText.text = "Rain";
+                weatherText.text = "陳噢 : Rain";
                 if (pMap != cubeNumber)
                 {
                     userInteraction.driveAble = false;
                     ShowCopingText(CopingText.RainWeatherText[0]);
                     Invoke("DriveAbleTrue", 4.0f);
+                    Invoke("DriveAbleFalse", 8.0f);
+                    Invoke("DriveAbleTrue", 9.5f);
                 }
             }
-            else if (cubeWeather == 2) weatherText.text = "Wind";
-            else if (cubeWeather == 3) weatherText.text = "Rainstorm";
+            else if (cubeWeather == 2) weatherText.text = "陳噢 : Wind";
+            else if (cubeWeather == 3) weatherText.text = "陳噢 : Rainstorm";
 
             int cubeTemp = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].temp;
-            tempText.text = cubeTemp.ToString();
+            tempText.text = "螞紫 : " + cubeTemp.ToString();
 
             pMap = cubeNumber;
         }
@@ -85,6 +87,10 @@ public class SmartMirrorManager : MonoBehaviour
     {
         copingText.text = "";
         userInteraction.driveAble = true;
+    }
+    void DriveAbleFalse()
+    {
+        userInteraction.driveAble = false;
     }
 
     // Update is called once per frame
