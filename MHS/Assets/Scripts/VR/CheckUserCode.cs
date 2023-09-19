@@ -11,11 +11,19 @@ public class CheckUserCode : MonoBehaviour
     public Text resultText;
     public Button enterBtn;
     private bool loading;
+    private TouchScreenKeyboard keyboard;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
+
+    public void OnInputFieldSelected()
+    {
+        keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+    }
+
 
     public void InputCode()
     {
@@ -56,6 +64,17 @@ public class CheckUserCode : MonoBehaviour
                 FinishLoading();
                 loading = false;
             }
+        }
+
+        if (keyboard != null)
+        {
+            input.text = keyboard.text;
+            keyboard = null;
+        }
+
+        if(input.isFocused)
+        {
+            OnInputFieldSelected();
         }
     }
 }
