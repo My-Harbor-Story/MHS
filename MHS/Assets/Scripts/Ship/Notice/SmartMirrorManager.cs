@@ -7,7 +7,9 @@ public class SmartMirrorManager : MonoBehaviour
 {
     public Text weatherText;
     public Text tempText;
+    public Text copingText;
     public GameObject rainPrefab;
+    private string pMap; //선박 현재 구역
 
     // Start is called before the first frame update
     void Start()
@@ -26,26 +28,37 @@ public class SmartMirrorManager : MonoBehaviour
             if (cubeWeather == 0) weatherText.text = "Clear";
             else if (cubeWeather == 1)
             {
-                userInteraction.driveAble = false;
-                weatherText.text = "Rain";
                 rainPrefab.SetActive(true);
                 rainPrefab.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
-                Invoke("DriveAbleTrue", 4.0f);
+                weatherText.text = "Rain";
+                if (pMap != cubeNumber)
+                {
+                    userInteraction.driveAble = false;
+                    ShowCopingText(CopingText.RainWeatherText[0]);
+                    Invoke("DriveAbleTrue", 4.0f);
+                }
             }
             else if (cubeWeather == 2) weatherText.text = "Wind";
             else if (cubeWeather == 3) weatherText.text = "Rainstorm";
 
             int cubeTemp = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].temp;
             tempText.text = cubeTemp.ToString();
+
+            pMap = cubeNumber;
         }
 
         if (collision.gameObject.CompareTag("Rock"))
         {
             userInteraction.driveAble = false;
-            Debug.Log("장애물 충돌");
             FadeRock(collision.gameObject);
-            Invoke("DriveAbleTrue", 6.0f);
+            ShowCopingText(CopingText.RockText[2]);
+            Invoke("DriveAbleTrue", 4.0f);
         }
+    }
+
+    void ShowCopingText(string text)
+    {
+        copingText.text = text;
     }
 
     void FadeRock(GameObject rock)
@@ -70,6 +83,7 @@ public class SmartMirrorManager : MonoBehaviour
 
     void DriveAbleTrue()
     {
+        copingText.text = "";
         userInteraction.driveAble = true;
     }
 
