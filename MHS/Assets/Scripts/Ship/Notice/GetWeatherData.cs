@@ -13,11 +13,11 @@ public class GetWeatherData : MonoBehaviour
         code = "f4Va30";
         for (int i = 0; i < 24; i++)
         {
-            GetWeather(i, "temp");
+            GetWeather(i);
         }
     }
 
-    void GetWeather(int idx, string sep)
+    void GetWeather(int idx)
     {
         FirebaseReceiver.CallReceiveWeatherData(code, idx);
     }

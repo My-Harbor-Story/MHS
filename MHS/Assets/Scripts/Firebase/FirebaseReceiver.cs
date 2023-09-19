@@ -84,7 +84,7 @@ public class FirebaseReceiver : MonoBehaviour
         {
             foreach (var data in snapshot.Children)
             {
-                //Debug.Log(data.Key + ", " + data.Value);
+                Debug.Log(data.Key + ", " + data.Value);
                 if (data.Key == "temp") weatherData[idx].temp = int.Parse(data.Value.ToString());
                 if (data.Key == "Weather") weatherData[idx].code = int.Parse(data.Value.ToString());
             }

@@ -19,6 +19,7 @@ public class SmartMirrorManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Map"))
         {
             string cubeNumber = collision.gameObject.name;
+            Debug.Log("Collision : " + cubeNumber);
             int cubeWeather = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].code;
             if (cubeWeather == 0) weatherText.text = "Clear";
             else if (cubeWeather == 1) weatherText.text = "Rain";
