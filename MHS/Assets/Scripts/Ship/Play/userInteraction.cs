@@ -11,6 +11,8 @@ public class userInteraction : MonoBehaviour
     [SerializeField] private TwoGrabRotateTransformer twoHand;
     [SerializeField] private Grabbable grabbable;
 
+    [SerializeField] private Transform navCamera; // 네비게이션을 보여줄 카메라
+
     public float speed = 10.0f;  // 자동차의 주행 속도
     public float turnSpeed = 3.0f;  // 핸들 꺾는 속도
 
@@ -20,6 +22,7 @@ public class userInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 핸들 회전된거 초기화
         handle.localRotation = Quaternion.Euler(0.0f, 90f, -90.0f);
     }
 
@@ -33,13 +36,19 @@ public class userInteraction : MonoBehaviour
     {
         if (driveAble)
         {
-            // 자동차의 전진
+            // 선박 직진
             transform.Translate(new Vector3(0, 0, 1) * speed * Time.deltaTime);
 
             // 핸들의 방향 확인
             //Debug_Handle();
             checkHandle();
         }
+
+        navCamera.transform.position = new Vector3(
+            transform.position.x,
+            transform.position.y + 12,
+            transform.position.z
+        );
 
     }
 
@@ -56,12 +65,14 @@ public class userInteraction : MonoBehaviour
     }
 
 
+    // 핸들의 회전 확인 함수
     void checkHandle()
     {
+        // 핸들을 잡고 있고
         if (isHandle)
         {
             Vector3 vector3 = handle.localRotation.eulerAngles;
-            //핸들을 잡은 상태 + - 35 / 35 범주를 넘어서면rotate
+            // 왼쪽 오른쪽 판단하여 rotate
             if (180 <= vector3.x)
             {
                 Debug.Log("Turn Left");
@@ -76,12 +87,14 @@ public class userInteraction : MonoBehaviour
         
     }
 
+    // 핸들 잡거나 놨을 때 판단 (잡으면 true, 놓으면 false)
     public void setIsHandle(bool isHandle)
     {
         Debug.Log("Handle");
         this.isHandle = isHandle;
     }
 
+    // VR 없이 기능 확인할 때 사용한 함수 (최종 기능엔 사용 X)
     void Debug_Handle()
     {
 

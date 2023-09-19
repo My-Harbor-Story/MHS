@@ -19,9 +19,9 @@ TagManager:
   - UI
   - Background
   - Line
-  - 
-  - 
-  - 
+  - Player
+  - Map
+  - MiniMapObject
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Line
     uniqueID: 3697141999
+    locked: 0
+  - name: Player
+    uniqueID: 2301838853
     locked: 0
