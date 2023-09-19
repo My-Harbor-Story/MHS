@@ -63,8 +63,10 @@ public class NoticeBtn : MonoBehaviour
         PlayerPrefs.SetInt("step", 3);
         PlayerPrefs.Save();
 
-        hideBtn();
-        showLoadingPage();
+        //hideBtn();
+        //showLoadingPage();
+
+        SceneManager.LoadScene("Loading");
     }
 
     private void showLoadingPage()
