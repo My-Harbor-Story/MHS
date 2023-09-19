@@ -15,7 +15,7 @@ public class userInteraction : MonoBehaviour
     public float turnSpeed = 3.0f;  // 핸들 꺾는 속도
 
     bool isHandle = false;
-    bool driveAble = true;
+    public static bool driveAble = true;
 
     // Start is called before the first frame update
     void Start()

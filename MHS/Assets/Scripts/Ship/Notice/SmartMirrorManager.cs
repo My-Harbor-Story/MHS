@@ -26,9 +26,11 @@ public class SmartMirrorManager : MonoBehaviour
             if (cubeWeather == 0) weatherText.text = "Clear";
             else if (cubeWeather == 1)
             {
+                userInteraction.driveAble = false;
                 weatherText.text = "Rain";
                 rainPrefab.SetActive(true);
                 rainPrefab.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
+                Invoke("DriveAbleTrue", 4.0f);
             }
             else if (cubeWeather == 2) weatherText.text = "Wind";
             else if (cubeWeather == 3) weatherText.text = "Rainstorm";
@@ -39,8 +41,36 @@ public class SmartMirrorManager : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Rock"))
         {
+            userInteraction.driveAble = false;
             Debug.Log("장애물 충돌");
+            FadeRock(collision.gameObject);
+            Invoke("DriveAbleTrue", 6.0f);
         }
+    }
+
+    void FadeRock(GameObject rock)
+    {
+        StartCoroutine(FadeAway(rock));
+    }
+
+    IEnumerator FadeAway(GameObject rock)
+    {
+        yield return new WaitForSeconds(1);
+        MeshRenderer meshRenderer = rock.GetComponent<MeshRenderer>();
+        while (meshRenderer.material.color.a > 0)
+        {
+            var color = meshRenderer.material.color;
+            color.a -= (.5f * Time.deltaTime);
+
+            meshRenderer.material.color = color;
+            yield return null;
+        }
+        Destroy(rock);
+    }
+
+    void DriveAbleTrue()
+    {
+        userInteraction.driveAble = true;
     }
 
     // Update is called once per frame
