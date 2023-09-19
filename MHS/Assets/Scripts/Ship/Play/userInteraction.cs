@@ -122,7 +122,7 @@ public class userInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Destination"))
         {
-
+            driveAble = false;
         }
     }
 }

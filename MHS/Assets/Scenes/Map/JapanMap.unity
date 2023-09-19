@@ -4104,7 +4104,7 @@ GameObject:
   - component: {fileID: 916218605}
   - component: {fileID: 916218606}
   m_Layer: 10
-  m_Name: Start (1)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6639,7 +6639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: c5a48421b9b94cd0bc89db4379a3dae0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: c5a48421b9b94cd0bc89db4379a3dae0, type: 3}
+      propertyPath: m_TagString
+      value: Destination
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5a48421b9b94cd0bc89db4379a3dae0, type: 3}
@@ -6740,6 +6744,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222985053}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1319313242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: c5a48421b9b94cd0bc89db4379a3dae0, type: 3}
+  m_PrefabInstance: {fileID: 1220575257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1319313246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319313242}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8740036, y: 5.832973, z: 1.8740027}
+  m_Center: {x: -0.0000002682209, y: 2.919894, z: -0.0000006854534}
 --- !u!1 &1346342878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7365,7 +7387,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 1024
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 37589cf3b72a1c943aff1b2e2089d84c, type: 2}
   m_TargetDisplay: 1
