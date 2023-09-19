@@ -9,8 +9,7 @@ public class GetWeatherData : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //code = PlayerPrefs.GetString("vrUserCode");
-        code = "f4Va30";
+        code = PlayerPrefs.GetString("vrUserCode"); //테스트 코드 : f4Va30
         for (int i = 0; i < 24; i++)
         {
             GetWeather(i);
