@@ -10,6 +10,7 @@ TagManager:
   - Order4
   - Map
   - Rock
+  - Destination
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,7 @@ public class userInteraction : MonoBehaviour
     [SerializeField] private Transform navCamera; // 네비게이션을 보여줄 카메라
 
     public float speed = 10.0f;  // 자동차의 주행 속도
-    public float turnSpeed = 3.0f;  // 핸들 꺾는 속도
+    public float turnSpeed = 30.0f;  // 핸들 꺾는 속도
 
     bool isHandle = false;
     public static bool driveAble = true;
@@ -24,6 +24,9 @@ public class userInteraction : MonoBehaviour
     {
         // 핸들 회전된거 초기화
         handle.localRotation = Quaternion.Euler(0.0f, 90f, -90.0f);
+
+        // 선박 초기 위치 초기화
+        transform.position = new Vector3(100.0f, 1.66f, -124.0f);
     }
 
     // Update is called once per frame
@@ -42,6 +45,7 @@ public class userInteraction : MonoBehaviour
             // 핸들의 방향 확인
             //Debug_Handle();
             checkHandle();
+
         }
 
         navCamera.transform.position = new Vector3(
@@ -49,19 +53,18 @@ public class userInteraction : MonoBehaviour
             transform.position.y + 12,
             transform.position.z
         );
-
     }
 
     void Handle_Left()
     {
         //회전
-        transform.Rotate(0, Time.deltaTime * -30, 0);
+        transform.Rotate(0, Time.deltaTime * turnSpeed * -1, 0);
 
     }
 
     void Handle_Right()
     {
-        transform.Rotate(0, Time.deltaTime * 30, 0);
+        transform.Rotate(0, Time.deltaTime * turnSpeed, 0);
     }
 
 
@@ -84,7 +87,12 @@ public class userInteraction : MonoBehaviour
                 Handle_Right();
             }
         }
-        
+
+        else
+        {
+            // 놓으면 초기화
+            handle.localRotation = Quaternion.Euler(0.0f, 90.0f, -90.0f);
+        }
     }
 
     // 핸들 잡거나 놨을 때 판단 (잡으면 true, 놓으면 false)
@@ -108,6 +116,13 @@ public class userInteraction : MonoBehaviour
             handle.localRotation = Quaternion.Euler(90.0f, 90f, -90.0f);
             Handle_Right();
         }
+    }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Destination"))
+        {
+            driveAble = false;
+        }
     }
 }
