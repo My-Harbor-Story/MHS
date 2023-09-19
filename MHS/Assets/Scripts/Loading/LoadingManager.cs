@@ -9,7 +9,8 @@ public class LoadingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string code = PlayerPrefs.GetString("userCode");
+        //string code = PlayerPrefs.GetString("userCode");
+        string code = "f4Va30";
         codeText.text = code;
     }
 

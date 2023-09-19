@@ -7,7 +7,7 @@ public class DestinationText : MonoBehaviour
 {
     private int releaseNum;
     private string[] loadedOrderList;
-    public Text releaseText;
+    public TMPro.TextMeshProUGUI releaseText;
 
     void Start()
     {

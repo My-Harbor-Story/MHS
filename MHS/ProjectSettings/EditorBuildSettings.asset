@@ -5,25 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Camp.unity
     guid: 1443553e2fc6ece41af9fe84f861bff9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DataLab.unity
     guid: af0383a4ca9f07348802cdd1ae5c2bfa
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ManageItem.unity
     guid: c5d899f86ea1a8c43a4b531becd39f44
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Ship_Route.unity
     guid: 46ef79f3bb6cd2e48921e407a563df25
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Destination.unity
     guid: f2648f64e2c1609499fc93f68388c07b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SmartLighthouse.unity
     guid: 5dc35a55e2e760547919282c9994aeb0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Ship_Notice.unity
     guid: 84166ab9a4dd10c498ee890598ae1aaf
   - enabled: 1
