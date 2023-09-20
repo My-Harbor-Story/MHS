@@ -56,7 +56,7 @@ public class NoticeBtn : MonoBehaviour
 
     public void Btn_No()
     {
-        SceneManager.LoadScene("SmartLighthouse");
+        SceneManager.LoadScene("Camp");
     }
     public void Btn_Yes()
     {
