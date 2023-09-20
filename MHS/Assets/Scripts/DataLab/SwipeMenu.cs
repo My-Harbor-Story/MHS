@@ -22,7 +22,7 @@ public class SwipeMenu : MonoBehaviour
         // 처음에는 첫 페이지만 화면에 보이게
         for (int i = 1; i < menuPages.Length; i++)
         {
-            menuPages[i].position = new Vector3(Screen.width, 0, 0);
+            menuPages[i].position = new Vector3(Screen.width+1000, 0, 0);
         }
 
         // 첫 페이지 하단 아이콘 검은색으로 설정
@@ -70,7 +70,7 @@ public class SwipeMenu : MonoBehaviour
             // 이전 페이지 아이콘 이미지 검은색으로 변경
             pageIconObject[currentPage - 1].sprite = pageIconSprite[1];
 
-            menuPages[currentPage].position = new Vector3(Screen.width, 0, 0); // 현재 페이지 오른쪽 이동
+            menuPages[currentPage].position = new Vector3(Screen.width+1000, 0, 0); // 현재 페이지 오른쪽 이동
             currentPage--;
             menuPages[currentPage].position = new Vector3(0, 0, 0); // 이전 페이지 중앙 이동
         }
@@ -86,7 +86,7 @@ public class SwipeMenu : MonoBehaviour
             // 다음 페이지 아이콘 이미지 검은색 아이콘으로 변경
             pageIconObject[currentPage + 1].sprite = pageIconSprite[1];
 
-            menuPages[currentPage].position = new Vector3(-Screen.width, 0, 0); // 현재 페이지 왼쪽 이동
+            menuPages[currentPage].position = new Vector3(-Screen.width-1000, 0, 0); // 현재 페이지 왼쪽 이동
             currentPage++;
             menuPages[currentPage].position = new Vector3(0, 0, 0); // 다음 페이지 중앙 이동
         }
