@@ -34,7 +34,6 @@ public class CheckUserCode : MonoBehaviour
         enterBtn.interactable = false;
         loadingObject.SetActive(true);
         resultText.text = "코드 확인중입니다. 잠시만 기다려주세요.";
-        StartCoroutine("moveScene");
     }
 
     public void FinishLoading()
@@ -77,11 +76,5 @@ public class CheckUserCode : MonoBehaviour
         {
             OnInputFieldSelected();
         }
-    }
-
-    IEnumerable moveScene()
-    {
-        yield return new WaitForSeconds(10.0f);
-        SceneManager.LoadScene("JapanMap");
     }
 }

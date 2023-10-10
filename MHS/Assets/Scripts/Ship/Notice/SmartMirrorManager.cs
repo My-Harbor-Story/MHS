@@ -11,24 +11,6 @@ public class SmartMirrorManager : MonoBehaviour
     public GameObject rainPrefab;
     private string pMap; //¼±¹Ú ÇöÀç ±¸¿ª
 
-    private int[] tempData = {
-        27, 27, 27, 28,
-        27, 27, 27, 27,
-        27, 27, 27, 27,
-        28, 28, 28, 28,
-        27, 26, 26, 26,
-        23, 24, 24, 23
-    };
-
-    private int[] tempWeather = {
-        0, 0, 0, 0,
-        0, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 0, 0, 0,
-        0, 0, 1, 1,
-        0, 0, 0, 0
-    };
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +22,8 @@ public class SmartMirrorManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Map"))
         {
             string cubeNumber = collision.gameObject.name;
-            //int cubeWeather = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].code;
-            int cubeWeather = tempWeather[int.Parse(cubeNumber)];
+            int cubeWeather = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].code;
+            //int cubeWeather = tempWeather[int.Parse(cubeNumber)];
 
             rainPrefab.SetActive(false);
             if (cubeWeather == 0) weatherText.text = "³¯¾¾ : Clear";
@@ -62,8 +44,8 @@ public class SmartMirrorManager : MonoBehaviour
             else if (cubeWeather == 2) weatherText.text = "³¯¾¾ : Wind";
             else if (cubeWeather == 3) weatherText.text = "³¯¾¾ : Rainstorm";
 
-            //int cubeTemp = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].temp;
-            int cubeTemp = tempData[int.Parse(cubeNumber)];
+            int cubeTemp = FirebaseReceiver.weatherData[int.Parse(cubeNumber)].temp;
+            //int cubeTemp = tempData[int.Parse(cubeNumber)];
             tempText.text = "¿Âµµ : " + cubeTemp.ToString();
 
             pMap = cubeNumber;

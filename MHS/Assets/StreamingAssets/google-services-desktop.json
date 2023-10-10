@@ -1,8 +1,8 @@
 {
   "project_info": {
     "project_number": "1083466654793",
+    "firebase_url": "https://myharborstory-a0daa-default-rtdb.firebaseio.com",
     "project_id": "myharborstory-a0daa",
-    "firebase_url": "https://myharborstory-a0daa-default-rtdb.firebaseio.com/",
     "storage_bucket": "myharborstory-a0daa.appspot.com"
   },
   "client": [
