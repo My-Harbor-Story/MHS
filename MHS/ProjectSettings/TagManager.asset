@@ -23,7 +23,7 @@ TagManager:
   - Player
   - Map
   - MiniMapObject
-  - 
+  - NoticePad
   - 
   - 
   - 
@@ -59,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2301838853
+    locked: 0
+  - name: NoticePad
+    uniqueID: 1133699171
     locked: 0
