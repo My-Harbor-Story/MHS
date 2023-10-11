@@ -9,7 +9,7 @@ public class UniteData
     public static int step;
     public static string userCode;
     public static string vrUserCode;
-
+    public static bool isPen; // 펜인지 AI인지 판단 변수
 
     public static void ResetData()
     {

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class AutoPathFind : MonoBehaviour
 {
+    public LineRenderer lineRendererPrefab;
+
     public Transform startPos;
     public Transform[] gridCenterPositions = new Transform[24];
 
@@ -14,8 +16,10 @@ public class AutoPathFind : MonoBehaviour
     public Transform start;
     public Transform end;
 
-    public Button aiButton;
     private List<Transform> shortestPath;
+
+    public Button AIButton;
+    private LineRenderer lineRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,12 @@ public class AutoPathFind : MonoBehaviour
         // 최단 경로 찾기
         shortestPath = FindShortestPath(startTransform, goalTransform);
 
+        lineRenderer = Instantiate(lineRendererPrefab);
+        //lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startWidth = 0.3f;
+        lineRenderer.endWidth = 0.3f;
+
+        AIButton.onClick.AddListener(Btn_AutoPathDraw);
         /*
         Debug.Log("Shortest Path:");
 
@@ -39,8 +49,23 @@ public class AutoPathFind : MonoBehaviour
 
     }
 
+    public void ClearPath()
+    {
+        // 모든 라인 렌더러를 삭제
+        LineRenderer[] lineRenderers = FindObjectsOfType<LineRenderer>();
+
+        foreach (var lineRenderer in lineRenderers)
+        {
+            lineRenderer.positionCount = 0;
+        }
+    }
+
     public void Btn_AutoPathDraw()
     {
+        ClearPath();
+
+        UniteData.isPen = false;
+
         // 최단 경로를 선으로 그리기
         DrawPath(shortestPath);
     }
@@ -203,7 +228,7 @@ public class AutoPathFind : MonoBehaviour
 
     void DrawPath(List<Transform> path)
     {
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        //LineRenderer lineRenderer = GetComponent<LineRenderer>();
 
         // LineRenderer 초기화
         lineRenderer.positionCount = path.Count;
