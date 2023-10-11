@@ -44,6 +44,9 @@ public class PathDrawing : MonoBehaviour
         currentLineRenderer.SetPosition(0, startPosition);
         lastPoint = startPosition;
         SaveRoutePos.RoutePos.Add(startPosition);
+
+        UniteData.isPen = true;
+        penButton.Select();
     }
 
     private void StartDrawing()
