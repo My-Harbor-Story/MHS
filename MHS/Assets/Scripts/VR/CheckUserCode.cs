@@ -24,7 +24,6 @@ public class CheckUserCode : MonoBehaviour
         keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
     }
 
-
     public void InputCode()
     {
         string code = input.text;

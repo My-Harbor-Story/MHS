@@ -1,6 +1,7 @@
 ﻿// Last update: 2018-05-20  (by Dikra)
 
 using UnityEngine;
+using UnityEngine.UI;
 
 using SimpleFirebaseUnity;
 using SimpleFirebaseUnity.MiniJSON;
@@ -17,12 +18,14 @@ public class SampleScript : MonoBehaviour
     [SerializeField]
     TextMesh textMesh;
 
+    public Text text;
+
 
     // Use this for initialization
     public void Start()
     {
         textMesh.text = "";
-        StartCoroutine(Tests());
+        //StartCoroutine(Tests());
     }
 
     void GetOKHandler(SimpleFirebase sender, DataSnapshot snapshot)
@@ -141,7 +144,7 @@ public class SampleScript : MonoBehaviour
         // The current provided implementation not yet including Auth Token Generation
         // If you're using this sample Firebase End, 
         // there's a possibility that your request conflicts with other simple-firebase-c# user's request
-        SimpleFirebase firebase = SimpleFirebase.CreateNew("https://simple-firebase-unity.firebaseio.com", "WQV9t78OywD8Pp7jvGuAi8K6g0MV8p9FAzkJ7rWK");
+        SimpleFirebase firebase = SimpleFirebase.CreateNew("https://myharborstory-a0daa-default-rtdb.firebaseio.com/", "AIzaSyAQW2wSI7yTOxLBmmopBIRVhHFN818mNOs");
 
         // Init callbacks
         firebase.OnGetSuccess += GetOKHandler;
@@ -249,8 +252,23 @@ public class SampleScript : MonoBehaviour
     public void SendDataTest()
     {
         SimpleFirebase firebase = SimpleFirebase.CreateNew("https://myharborstory-a0daa-default-rtdb.firebaseio.com/", "AIzaSyAQW2wSI7yTOxLBmmopBIRVhHFN818mNOs");
-        firebase.Child("broadcasts", true).Push("{ \"name\": \"dikra\", \"message\": \"hope it runs well...\"}", false);
+        firebase.Child("broadcasts", false).Push("{ \"name\": \"dikra\", \"message\": \"hope it runs well...\"}", false);
     }
+
+    public void GetDataTest()
+    {
+        SimpleFirebase firebase = SimpleFirebase.CreateNew("https://myharborstory-a0daa-default-rtdb.firebaseio.com/", "AIzaSyAQW2wSI7yTOxLBmmopBIRVhHFN818mNOs");
+
+        text.text = "시작";
+        SimpleFirebase users = firebase.Child("users");
+        users.GetValue();
+        users.OnGetSuccess += (SimpleFirebase sender, DataSnapshot snapshot) =>
+        {
+            text.text = snapshot.RawJson;
+        };
+        firebase.GetRules(GetRulesOKHandler, GetRulesFailHandler);
+    }
+
     Dictionary<string, object> GetSampleScoreBoard()
     {
         Dictionary<string, object> scoreBoard = new Dictionary<string, object>();

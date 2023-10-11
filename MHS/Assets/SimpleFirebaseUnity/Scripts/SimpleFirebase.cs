@@ -41,7 +41,8 @@ namespace SimpleFirebaseUnity
 
 #if !UNITY_WEBGL
     using System.Threading;
-#endif      
+    using UnityEngine.Networking;
+#endif
 
     [Serializable]
     public class SimpleFirebase
@@ -391,7 +392,7 @@ namespace SimpleFirebaseUnity
 
                 string url = Endpoint;
 
-                string param = WWW.EscapeURL(query.Parameter);
+                string param = UnityWebRequest.EscapeURL(query.Parameter);
 
                 if (param != "")
                     url += "?" + param;
@@ -430,7 +431,7 @@ namespace SimpleFirebaseUnity
 
                 string url = Endpoint;
 
-                string param = WWW.EscapeURL(query.Parameter);
+                string param = UnityWebRequest.EscapeURL(query.Parameter);
 
                 if (param != "")
                     url += "?" + param;
@@ -572,7 +573,7 @@ namespace SimpleFirebaseUnity
 
                 string url = Endpoint;
 
-                string param = WWW.EscapeURL(query.Parameter);
+                string param = UnityWebRequest.EscapeURL(query.Parameter);
 
                 if (param != string.Empty)
                     url += "?" + param;
@@ -697,7 +698,7 @@ namespace SimpleFirebaseUnity
 
                 string url = Endpoint;
 
-                string param = WWW.EscapeURL(query.Parameter);
+                string param = UnityWebRequest.EscapeURL(query.Parameter);
 
                 if (param != string.Empty)
                     url += "?" + param;
@@ -827,7 +828,7 @@ namespace SimpleFirebaseUnity
 
                 string url = Endpoint;
 
-                string param = WWW.EscapeURL(query.Parameter);
+                string param = UnityWebRequest.EscapeURL(query.Parameter);
 
                 if (param != string.Empty)
                     url += "?" + param;
@@ -1082,40 +1083,39 @@ namespace SimpleFirebaseUnity
 
         protected IEnumerator RequestCoroutine(string url, byte[] postData, Dictionary<string, string> headers, Action<SimpleFirebase, DataSnapshot> OnSuccess, Action<SimpleFirebase, FirebaseError> OnFailed)
         {
-            using (WWW www = (headers != null) ? new WWW(url, postData, headers) : (postData != null) ? new WWW(url, postData) : new WWW(url))
+            using (UnityWebRequest webRequest = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST))
             {
-                // Wait until load done
-                yield return www;
+                webRequest.uploadHandler = new UploadHandlerRaw(postData);
+                webRequest.downloadHandler = new DownloadHandlerBuffer();
 
-                if (!string.IsNullOrEmpty(www.error))
+                if (headers != null)
                 {
-
-                    HttpStatusCode status = 0;
-                    string errMessage = "";
-
-                    // Parse status code
-                    if (www.responseHeaders.ContainsKey("STATUS"))
+                    foreach (var header in headers)
                     {
-                        string str = www.responseHeaders["STATUS"] as string;
-                        string[] components = str.Split(' ');
-                        int code = 0;
-                        if (components.Length >= 3 && int.TryParse(components[1], out code))
-                            status = (HttpStatusCode)code;
+                        webRequest.SetRequestHeader(header.Key, header.Value);
                     }
+                }
 
-                    if (www.error.Contains("crossdomain.xml") || www.error.Contains("Couldn't resolve"))
+                // Send the request
+                yield return webRequest.SendWebRequest();
+
+                if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+                {
+                    HttpStatusCode status = (HttpStatusCode)webRequest.responseCode;
+                    string errMessage = webRequest.error;
+
+                    if (errMessage.Contains("crossdomain.xml") || errMessage.Contains("Couldn't resolve"))
                     {
                         errMessage = "No internet connection or crossdomain.xml policy problem";
                     }
-                    else {
-
+                    else
+                    {
                         // Parse error message
-
                         try
                         {
-                            if (!string.IsNullOrEmpty(www.text))
+                            if (!string.IsNullOrEmpty(webRequest.downloadHandler.text))
                             {
-                                Dictionary<string, object> obj = Json.Deserialize(www.text) as Dictionary<string, object>;
+                                Dictionary<string, object> obj = JsonUtility.FromJson<Dictionary<string, object>>(webRequest.downloadHandler.text);
 
                                 if (obj != null && obj.ContainsKey("error"))
                                     errMessage = obj["error"] as string;
@@ -1126,12 +1126,10 @@ namespace SimpleFirebaseUnity
                         }
                     }
 
-
-
                     if (OnFailed != null)
                     {
                         if (string.IsNullOrEmpty(errMessage))
-                            errMessage = www.error;
+                            errMessage = webRequest.error;
 
                         if (errMessage.Contains("Failed downloading"))
                         {
@@ -1142,25 +1140,20 @@ namespace SimpleFirebaseUnity
                     }
 
 #if UNITY_EDITOR
-                    Debug.LogWarning(www.error + " (" + (int)status + ")\nResponse Message: " + errMessage);
+                    Debug.LogWarning(webRequest.error + " (" + (int)status + ")\nResponse Message: " + errMessage);
 #endif
                 }
                 else
                 {
-                    ParserJsonToSnapshot parser = new ParserJsonToSnapshot(www.text);
-
-                    while (!parser.isDone)
-                        yield return null;
-
-                    DataSnapshot snapshot = parser.snapshot;
+                    DataSnapshot snapshot = new DataSnapshot(webRequest.downloadHandler.text);
                     if (OnSuccess != null) OnSuccess(this, snapshot);
                 }
             }
         }
 
-#endregion
+        #endregion
 
-#region STATIC FUNCTIONS
+        #region STATIC FUNCTIONS
 
         /// <summary>
         /// Creates new Firebase pointer at a valid Firebase url
