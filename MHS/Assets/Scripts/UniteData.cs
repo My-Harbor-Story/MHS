@@ -9,4 +9,15 @@ public class UniteData
     public static int step;
     public static string userCode;
     public static string vrUserCode;
+
+
+    public static void ResetData()
+    {
+        PlayerPrefs.SetInt("step", 0);
+        PlayerPrefs.SetString("userCode", null); // 유저코드 초기화
+        PlayerPrefs.SetInt("code", 0);
+        PlayerPrefs.Save();
+
+        Debug.Log("PlayerPrefs 데이터 초기화");
+    }
 }
