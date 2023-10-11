@@ -506,6 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 619731890}
   - component: {fileID: 619731891}
+  - component: {fileID: 619731892}
   m_Layer: 0
   m_Name: BtnManager
   m_TagString: Untagged
@@ -544,6 +545,18 @@ MonoBehaviour:
   - {fileID: 1047680379}
   - {fileID: 764119721}
   - {fileID: 901681221}
+--- !u!114 &619731892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619731889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc39a9c927328d47be7c5d145efeb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764119721
 GameObject:
   m_ObjectHideFlags: 0
