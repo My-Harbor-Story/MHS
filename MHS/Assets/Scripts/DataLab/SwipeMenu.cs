@@ -92,8 +92,10 @@ public class SwipeMenu : MonoBehaviour
         }
     }
 
+    // 캠프 씬으로 이동 + 데이터 초기화
     public void GoToMain()
     {
+        UniteData.ResetData();
         SceneManager.LoadScene("Camp");
     }
 }
