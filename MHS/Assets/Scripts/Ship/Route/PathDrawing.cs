@@ -18,6 +18,8 @@ public class PathDrawing : MonoBehaviour
 
     public Transform[] gridCenterPositions = new Transform[24];
 
+    public Button doneBtn;
+
     //private float dragStartTime = 0f; // 드래그 시작 시간
     //private float minDragDuration = 0.2f; // 최소 드래그 지속 시간
     //private int minDragging = 0;
@@ -47,6 +49,8 @@ public class PathDrawing : MonoBehaviour
 
         UniteData.isPen = true;
         penButton.Select();
+
+        doneBtn.interactable = false;
     }
 
     private void StartDrawing()
@@ -70,8 +74,8 @@ public class PathDrawing : MonoBehaviour
             //Destroy(lineRenderer.gameObject);
         }
         UniteData.isPen = false;
+        doneBtn.interactable = false;
 
-        
 
         // 그려진 경로 데이터 삭제
         SaveRoutePos.RoutePos.Clear();
@@ -161,11 +165,12 @@ public class PathDrawing : MonoBehaviour
                     currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);
                 }
 
-                // 특정 위치에 도달하면 씬 전환
-                //if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1), targetObject.position) < distanceThreshold)
-                //{
-                //    SceneManager.LoadScene("Ship_Notice");
-                //}
+                // 특정 위치에 도달 확인버튼 클릭 가능
+                if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1), targetObject.position) < distanceThreshold)
+                {
+                    doneBtn.interactable = true;
+                    //SceneManager.LoadScene("Ship_Notice");
+                }
             }
         }
     }

@@ -21,6 +21,8 @@ public class AutoPathFind : MonoBehaviour
     public Button AIButton;
     private LineRenderer lineRenderer;
 
+    public Button doneBtn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class AutoPathFind : MonoBehaviour
             Debug.Log("Node Position: " + node.position);
         }*/
 
+        doneBtn.interactable = false;
     }
 
     public void ClearPath()
@@ -58,6 +61,8 @@ public class AutoPathFind : MonoBehaviour
         {
             lineRenderer.positionCount = 0;
         }
+
+        doneBtn.interactable = false;
     }
 
     public void Btn_AutoPathDraw()
@@ -68,6 +73,8 @@ public class AutoPathFind : MonoBehaviour
 
         // 최단 경로를 선으로 그리기
         DrawPath(shortestPath);
+
+        doneBtn.interactable = true;
     }
 
     List<Transform> FindShortestPath(Transform start, Transform goal)

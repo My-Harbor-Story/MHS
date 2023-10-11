@@ -11,6 +11,8 @@ public class LighthouseUI : MonoBehaviour
     public Sprite[] flagSprite;
     public Button[] btn; //일본 중국 태국
     public GameObject flag;
+
+    public GameObject Notice_Tablet;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,7 @@ public class LighthouseUI : MonoBehaviour
             int buttonIdx = i;
             btn[i].onClick.AddListener(() => ClickButton(buttonIdx));
         }
+        Notice_Tablet.SetActive(false);
     }
 
     public void ClickButton(int num)
@@ -36,7 +39,20 @@ public class LighthouseUI : MonoBehaviour
         SceneManager.LoadScene("Camp");
     }
 
-    public void GoToMainSave()
+    public void ShowNotice()
+    {
+        // 모든 라인 렌더러를 삭제
+        LineRenderer[] lineRenderers = FindObjectsOfType<LineRenderer>();
+
+        foreach (var lineRenderer in lineRenderers)
+        {
+            lineRenderer.positionCount = 0;
+        }
+
+        Notice_Tablet.SetActive(true);
+    }
+
+    public void GoToShipNoticeSave()
     {
         PlayerPrefs.SetInt("step", 2);
         PlayerPrefs.Save();
