@@ -7,7 +7,7 @@ using static DebugUIBuilder;
 public class PathDrawing : MonoBehaviour
 {
     public LineRenderer lineRendererPrefab;
-    private bool isDragging = false;
+    //private bool isDragging = false;
     private LineRenderer currentLineRenderer;
     private float zCoordinate = 100f;
     private Transform nearestGridCenter;
@@ -18,10 +18,12 @@ public class PathDrawing : MonoBehaviour
 
     public Transform[] gridCenterPositions = new Transform[24];
 
+    //private float dragStartTime = 0f; // 드래그 시작 시간
+    //private float minDragDuration = 0.2f; // 최소 드래그 지속 시간
+    //private int minDragging = 0;
+
     private float maxDistanceForDrawing = 2.5f; // 대각선으로 못그리게
-    private float dragStartTime = 0f; // 드래그 시작 시간
-    private float minDragDuration = 0.2f; // 최소 드래그 지속 시간
-    private int minDragging = 0;
+    private bool isDrawing = false;
 
     public Button penButton; // 펜 버튼
     public GameObject eraserButton; // 지우개 버튼
@@ -84,6 +86,7 @@ public class PathDrawing : MonoBehaviour
     {
         if (UniteData.isPen)
         {
+            /*
             if (Input.GetMouseButtonDown(0) && !isDragging)
             {
                 isDragging = true;
@@ -131,6 +134,35 @@ public class PathDrawing : MonoBehaviour
                         //}
                     }
                 }
+        }*/
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDrawing = true;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                isDrawing = false;
+            }
+
+            if (isDrawing)
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                nearestGridCenter = FindNearestGridCenter(mousePosition);
+
+                float distance = Vector3.Distance(nearestGridCenter.position, currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1));
+
+                // 대각선 방향으로 그리지 않도록 수정
+                if (distance <= maxDistanceForDrawing)
+                {
+                    currentLineRenderer.positionCount++;
+                    currentLineRenderer.SetPosition(currentLineRenderer.positionCount - 1, nearestGridCenter.position);
+                }
+
+                // 특정 위치에 도달하면 씬 전환
+                //if (Vector3.Distance(currentLineRenderer.GetPosition(currentLineRenderer.positionCount - 1), targetObject.position) < distanceThreshold)
+                //{
+                //    SceneManager.LoadScene("Ship_Notice");
+                //}
             }
         }
     }
